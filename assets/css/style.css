@@ -1,0 +1,23 @@
+#siteHeader{
+    background: #74B3CE;
+}
+#sidebar{
+    background: #508991;
+}
+#movieSecton{
+    background: #172A3A;
+}
+#footer {
+    background: #004346;
+}
+#home{
+    height: 100%;
+}
+section{
+    background: #09BC8A;
+    margin: 15px;
+}
+header{
+    justify-content: center;
+}
+
