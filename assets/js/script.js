@@ -9,13 +9,19 @@ var omdbUrl = 'http://www.omdbapi.com/?apikey=49cd7bff&t=';
 // TMBD url
 var tmdbUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=efcca3762e356b7b95982ec994db2fbc';
 
-
 omMovieSearch();
 
 tmMovieSearch();
 
+genres();
 // loadYoutube();
 // executeYoutube();
+
+// variables for TMDB fetch functions
+var year = [];
+
+
+
 
 function omMovieSearch() {
     var movieName = 'blade'
@@ -43,6 +49,18 @@ function tmMovieSearch() {
 
 };
 
+function genres() {
+    var url = 'https://api.themoviedb.org/3/genre/movie/list?api_key=efcca3762e356b7b95982ec994db2fbc&language=en-US'
+
+    fetch(url)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function(genreJson) {
+            console.log(genreJson)
+        })
+}
+
 
 
     var key = 'AIzaSyCENe0M7rpOxtAXyYNUbOuUQc_DMYZ_JU4';
@@ -68,23 +86,3 @@ function tmMovieSearch() {
         console.log(vid);
         })
     }
-    
-
-// function loadYoutube() {
-//     gapi.client.setApiKey('AIzaSyCENe0M7rpOxtAXyYNUbOuUQc_DMYZ_JU4')
-//     gapi.client.load('https://www.googleapis.com/youtube/v3/search')
-// }
-
-// function executeYoutube() {
-//     return gapi.client.youtube.search.list({
-//         part: ['snippet'],
-//         type: ['video'],
-//         q: 'blade',
-//         maxResults: 1,
-//     })
-//     .then(function(response) {
-//         console.log(response);
-//     })
-// };
-
-//Youtube API Key AIzaSyCENe0M7rpOxtAXyYNUbOuUQc_DMYZ_JU4
