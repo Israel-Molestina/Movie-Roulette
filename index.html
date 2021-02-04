@@ -10,7 +10,7 @@
     <!--reset css-->
     <link type="text/css" rel="stylesheet" href="assets/css/reset.css">
 
-    <!-- Compressed CSS -->
+    <!-- compressed foundation CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
 
     <!--my css-->
@@ -19,44 +19,80 @@
 </head>
 
 <body>
-    <main class="grid-y grid-frame">
-
-        <header class="cell shrink header primary"></header>
-        <div class="card" style="width: 300px;">
-        <div class="card-divider">
-
-        <h4 id="movieTitle">I'm featured</h4>
+<main class="grid-y grid-frame">
+        <header id="siteHeader" class="grid-x">
+            <div class="cell-sm-12">
+            <h1 id="title">Movie Roulette</h1>
         </div>
-        <div id="descrip" class="card-section">
-        <p>This card makes use of the card-divider element.</p>
+</header>
+<!-- SIDE BAR SECTION -->
+    <div id="home" class="grid-x">
+        <aside id="sidebar" class="cell medium-4">
+            <div class="grid-y">
+                <section id="genre"class="cell">
+                    <label>Select Menu
+                        <select>
+                        <option value="28">Action</option>
+                        <option value="12">Adventure</option>
+                        <option value="16">Animation</option>
+                        <option value="35">Comedy</option>
+                        <option value="80">Crime</option>
+                        <option value="99">Documentary</option>
+                        <option value="18">Drama</option>
+                        <option value="10751">Family</option>
+                        <option value="14">Fantasy</option>
+                        <option value="36">History</option>
+                        <option value="27">Horror</option>
+                        <option value="10402">Music</option>
+                        <option value="9648">Mystery</option>
+                        <option value="10749">Romance</option>
+                        <option value="878">Science Ficition</option>
+                        <option value="10770">TV Movie</option>
+                        <option value="53">Thriller</option>
+                        <option value="10752">War</option>
+                        <option value="37">Western</option>
+                        </select>
+                    </label>
+                </section>
+                <section id="ratings"class="cell">
+                        <fieldset>
+                        <legend>Check The ratings </legend>
+                        <input id="1star" type="checkbox"><label for="checkbox1">1 star</label>
+                        <input id="2star" type="checkbox"><label for="checkbox2">2 star</label>
+                        <input id="3star" type="checkbox"><label for="checkbox3">3 star</label>
+                        <input id="4star" type="checkbox"><label for="checkbox3">4 star</label>
+                        <input id="5star" type="checkbox"><label for="checkbox3">5 star</label>
+                        </fieldset>
+                </section>
+                <section id="yearRange"class="cell"></section>
+                <section id="Director"class="cell"></section>
+                <section id="Actor"class="cell"></section>
+                <button type="submit" id="submit"class="success button">Submit</button>
+                <button type="button" id="nextMovie"class="success button">Next Movie</button>
+            </div>
+        </aside>
+
+<!-- MOVIE SECTION -->
+        <div id="movieSecton" class="cell medium-8">
+            <article class="grid-y">
+                <section id="movieTitle"class="cell"><p>Movie Title</p></section>
+                <section id="movieTrailer" class="cell"><p>movieTrailer</p></section>
+                <section id="descrip" class="cell"><p>Description Box</p></section>
+            </article>
         </div>
     </div>
-    <aside>
-        <section id="genre"></section>
-        <section id="ratings"></section>
-        <section id="yearRange"></section>
-        <section id="Director"></section>
-        <section id="Actor"></section>
-        <button type="button" id="submit"class="success button">Submit</button>
-        <button type="button" id="nextMovie"class="success button">Next Movie</button>
-    </aside>
+            <footer id="footer" class="grid-x align-center-middle"><h1>Footer</h1></footer>
+</main>
 
-        <footer class="cell shrink footer"></footer>
-    </main>
-
-    <!-- jquery cdn-->
-    <script
-    src="https://code.jquery.com/jquery-3.5.1.js"
-    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"></script>
-    
-    <!-- Compressed JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
-
-    <script src="https://apis.google.com/js/api.js"></script>
+    <!-- jquery for for foundation script -->
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <!-- Compressed foundation JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
 
     <!--my js-->
-    <script src="assets/js/script.js"></script>
+<script src="assets/js/script.js"></script>
+<!-- Youtube -->
+<script src="https://apis.google.com/js/api.js?onload=init"></script>
 </body>
 
 </html>
