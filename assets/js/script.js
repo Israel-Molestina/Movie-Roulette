@@ -1,3 +1,17 @@
+// this function is fetching our id's to match with genres. will delete once project is complete
+function genres() {
+    var url = 'https://api.themoviedb.org/3/genre/movie/list?api_key=efcca3762e356b7b95982ec994db2fbc&language=en-US'
+
+    fetch(url)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function(genreJson) {
+            console.log(genreJson)
+        })
+}
+
+
 //API Key MovieDB efcca3762e356b7b95982ec994db2fbc
 //Youtube API Key AIzaSyCENe0M7rpOxtAXyYNUbOuUQc_DMYZ_JU4
 
@@ -7,7 +21,7 @@ var tmKey = 'api_key=efcca3762e356b7b95982ec994db2fbc';
 var omdbUrl = 'http://www.omdbapi.com/?apikey=49cd7bff&t=';
 
 // TMBD url
-var tmdbUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=efcca3762e356b7b95982ec994db2fbc';
+var tmdbUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=efcca3762e356b7b95982ec994db2fbc&language=en-US';
 
 omMovieSearch();
 
@@ -37,8 +51,9 @@ function omMovieSearch() {
 };
 
 function tmMovieSearch() {
-    var updatedtmUrl = tmdbUrl + '&include_adult=true';
-
+    var genre = '&with_genres=' + gValue
+    var updatedtmUrl = tmdbUrl + genre;
+    
     fetch(updatedtmUrl)
         .then(function (response) {
             return response.json();
@@ -49,17 +64,6 @@ function tmMovieSearch() {
 
 };
 
-function genres() {
-    var url = 'https://api.themoviedb.org/3/genre/movie/list?api_key=efcca3762e356b7b95982ec994db2fbc&language=en-US'
-
-    fetch(url)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function(genreJson) {
-            console.log(genreJson)
-        })
-}
 
 
 
