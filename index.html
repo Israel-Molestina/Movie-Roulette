@@ -1,100 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>MovieDate</title>
 
     <!--reset css-->
-    <link type="text/css" rel="stylesheet" href="assets/css/reset.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/reset.css" />
 
     <!-- compressed foundation CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+        integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous" />
 
     <!--my css-->
-    <link type="text/css" rel="stylesheet" href="assets/css/style.css">
-
+    <link type="text/css" rel="stylesheet" href="assets/css/style.css" />
 </head>
 
 <body>
-<main class="grid-y grid-frame">
+    <main class="grid-y medium-grid-frame">
         <header id="siteHeader" class="grid-x">
             <div class="cell-sm-12">
-            <h1 id="title">Movie Roulette</h1>
-        </div>
-</header>
-<!-- SIDE BAR SECTION -->
-    <div id="home" class="grid-x">
-        <aside id="sidebar" class="cell medium-4">
-            <div class="grid-y">
-                <form>
-                    <section class="cell">
-                        <label>Select Menu
-                            <select class="genre">
-                                <option value="28">Action</option>
-                                <option value="12">Adventure</option>
-                                <option value="16">Animation</option>
-                                <option value="35">Comedy</option>
-                                <option value="80">Crime</option>
-                                <option value="99">Documentary</option>
-                                <option value="18">Drama</option>
-                                <option value="10751">Family</option>
-                                <option value="14">Fantasy</option>
-                                <option value="36">History</option>
-                                <option value="27">Horror</option>
-                                <option value="10402">Music</option>
-                                <option value="9648">Mystery</option>
-                                <option value="10749">Romance</option>
-                                <option value="878">Science Ficition</option>
-                                <option value="10770">TV Movie</option>
-                                <option value="53">Thriller</option>
-                                <option value="10752">War</option>
-                                <option value="37">Western</option>
-                            </select>
-                        </label>
-                    </section>
-                </form> 
-                <section class="cell">
-                        <fieldset>
-                            <legend>Check The ratings </legend>
-                            <input id="1star" name='star' value='1' type="radio"><label for="1">1 star</label>
-                            <input id="2star" name='star' value='3.5' type="radio"><label for="2">2 star</label>
-                            <input id="3star" name='star' value='5.5' type="radio"><label for="3">3 star</label>
-                            <input id="4star" name='star' value='7.5' type="radio"><label for="4">4 star</label>
-                            <input id="5star" name='star' value='8.5' type="radio"><label for="5">5 star</label>
-                        </fieldset>
-                </section>
-                <section id="yearRange"class="cell"></section>
-                <section id="Director"class="cell"></section>
-                <section id="Actor"class="cell"></section>
-                <button type="submit" id="submit"class="success button">Submit</button>
-                <button type="button" id="nextMovie"class="success button">Next Movie</button>
+                <h1 id="title">Movie Roulette</h1>
             </div>
-        </aside>
+        </header>
+        <!-- SIDE BAR SECTION -->
+        <div id="home" class="grid-x">
+            <aside id="sidebar" class="cell medium-4">
+                <div class="grid-y">
+                    <form>
+                        <section class="cell">
+                            <label>Select Menu
+                                <select class="genre">
+                                    <option value="28">Action</option>
+                                    <option value="12">Adventure</option>
+                                    <option value="16">Animation</option>
+                                    <option value="35">Comedy</option>
+                                    <option value="80">Crime</option>
+                                    <option value="99">Documentary</option>
+                                    <option value="18">Drama</option>
+                                    <option value="10751">Family</option>
+                                    <option value="14">Fantasy</option>
+                                    <option value="36">History</option>
+                                    <option value="27">Horror</option>
+                                    <option value="10402">Music</option>
+                                    <option value="9648">Mystery</option>
+                                    <option value="10749">Romance</option>
+                                    <option value="878">Science Ficition</option>
+                                    <option value="10770">TV Movie</option>
+                                    <option value="53">Thriller</option>
+                                    <option value="10752">War</option>
+                                    <option value="37">Western</option>
+                                </select>
+                            </label>
+                        </section>
+                    </form>
+                    <section class="cell">
+                        <fieldset>
+                            <legend>Check The ratings</legend>
+                            <input id="1star" name="star" value="1" type="radio" /><label for="1">1 star</label>
+                            <input id="2star" name="star" value="3.5" type="radio" /><label for="2">2 star</label>
+                            <input id="3star" name="star" value="5.5" type="radio" /><label for="3">3 star</label>
+                            <input id="4star" name="star" value="7.5" type="radio" /><label for="4">4 star</label>
+                            <input id="5star" name="star" value="8.5" type="radio" /><label for="5">5 star</label>
+                        </fieldset>
+                    </section>
+                    <section id="yearRange" class="cell"></section>
+                    <section id="Director" class="cell"></section>
+                    <section id="Actor" class="cell"></section>
+                    <button type="submit" id="submit" class="success button">
+                        Submit
+                    </button>
+                    <button type="button" id="saveMovie" class="success button">
+                        Save Movie
+                    </button>
+                </div>
+            </aside>
 
-<!-- MOVIE SECTION -->
-        <div id="movieSecton" class="cell medium-8">
-            <article class="grid-y">
-                <section id="movieTitle"class="cell"><p>Movie Title</p></section>
-                <section id="movieTrailer" class="cell"><p>movieTrailer</p></section>
-                <section id="descrip" class="cell"><p>Description Box</p></section>
-            </article>
+            <!-- MOVIE SECTION -->
+            <div id="movieSecton" class="cell medium-8">
+                <article class="grid-y">
+                    <section id="movieTitle" class="cell">
+                        <p>Movie Title</p>
+                    </section>
+                    <section id="movieTrailer" class="cell">
+                        <p>movieTrailer</p>
+                    </section>
+                    <section id="descrip" class="cell">
+                        <p>Description Box</p>
+                    </section>
+                </article>
+            </div>
         </div>
-    </div>
-            <footer id="footer" class="grid-x align-center-middle"><h1>Footer</h1></footer>
-</main>
+        <footer id="footer" class="grid-x align-center-middle">
+            <h1>Footer</h1>
+        </footer>
+    </main>
 
     <!-- jquery for for foundation script -->
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <!-- Compressed foundation JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+        integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
 
     <!--my js-->
-<script src="assets/js/script.js"></script>
-<!-- Youtube -->
-<script src="https://apis.google.com/js/api.js?onload=init"></script>
+    <script src="assets/js/script.js"></script>
+    <!-- Youtube -->
+    <script src="https://apis.google.com/js/api.js?onload=init"></script>
 </body>
 
 </html>

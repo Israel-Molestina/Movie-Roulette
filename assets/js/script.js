@@ -18,6 +18,9 @@ var tuebUrl = 'https://www.googleapis.com/youtube/v3/search';
 // asignment variables
 var btnSub = document.querySelector('#submit');
 var genreMenu = document.querySelector('.genre');
+var btnSave = document.querySelector('#saveMovie');
+var movieTitleEl = document.querySelector('#movieTitle');
+var sumBox = document.querySelector('#descrip');
 
 // click event listener for when user submits criteria
 btnSub.addEventListener('click', function() {
@@ -37,6 +40,20 @@ btnSub.addEventListener('click', function() {
     tmMovieSearch(object);
 
 });
+
+// event listener that will save movies along with their info to local storage in an object form
+btnSave.addEventListener('click', function() {
+    console.log($(this));
+    var title = $(this)[0].ownerDocument.body.children[0].firstElementChild.nextElementSibling.lastElementChild.children[0].children[0].firstChild.innerHTML;
+    var summary = sumBox.innerHTML;
+    var movieThings = {description: summary}
+    var key = title;
+    var value = JSON.stringify(movieThings);
+
+    localStorage.setItem(key, value);
+
+    
+})
 
 // fetch function for the movie data base.
 function tmMovieSearch(object) {
@@ -76,9 +93,7 @@ function randomMovie(returnJson){
 
 // Adds Movie title and description to designated area
 function movieTitle(movieOption){
-    var movieTitleEl = document.querySelector('#movieTitle');
     var movieTitleSpan = document.createElement('h2');
-    var sumBox = document.querySelector('#descrip');
     var summarySpan = document.createElement('p');
 
     if((movieTitleEl.innerHTML) & (sumBox.innerHTML) === ""){
