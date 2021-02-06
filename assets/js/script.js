@@ -41,8 +41,9 @@ function tmMovieSearch(genId) {
             if (response.ok) {
                 response.json()
                 .then(function(returnJson) {
-                console.log(returnJson)
-                randomMovie(returnJson)     
+                console.log(returnJson);
+                randomMovie(returnJson);
+                
             });
             
             }
@@ -52,7 +53,7 @@ function tmMovieSearch(genId) {
         
     
 }
-//Function to choose random movie 
+// Function to choose random movie 
 function randomMovie(returnJson){
     var index = Math.floor(Math.random() * returnJson.results.length);
     console.log(index);
@@ -60,9 +61,23 @@ function randomMovie(returnJson){
 
     var movieOption = returnJson.results[index]
 
-    return movieOption
+    movieTitle(movieOption)
 }
+// Adds Movie title and description to designated areas
 
+function movieTitle(movieOption){
+    var movieTitleEl = document.querySelector('#movieTitle');
+    var movieTitleSpan = document.createElement('h2');
+    var sumBox = document.querySelector('#descrip');
+    var summarySpan = document.createElement('p');
+
+
+    movieTitleSpan.textContent = movieOption.title;
+    movieTitleEl.appendChild(movieTitleSpan);
+
+    summarySpan.textContent = movieOption.overview;
+    sumBox.appendChild(summarySpan);
+}
 
 
 // ombd fetch request for extra info on movie
@@ -96,6 +111,7 @@ var options = {
     channelId: chanId,
     q: 'blade'
 }
+
 loadVid();
 // furns youtube fetch request
 function loadVid() {
