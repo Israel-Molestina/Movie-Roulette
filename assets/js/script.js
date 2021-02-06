@@ -44,6 +44,7 @@ function tmMovieSearch(genId) {
                 console.log(returnJson)
                 randomMovie(returnJson)     
             });
+            
             }
             
             // gonna put an else statment here if response is for some reason invalid
