@@ -18,20 +18,42 @@ var tuebUrl = 'https://www.googleapis.com/youtube/v3/search';
 var btnSub = document.querySelector('#submit');
 var genreMenu = document.querySelector('.genre');
 
+
+
 // click event listener for when user submits criteria
 btnSub.addEventListener('click', function() {
 
+    // grabs the users selected genre and rating and passes it to the fetch function
     var genId = genreMenu.options[genreMenu.selectedIndex].value;
     console.log(genId);
-    tmMovieSearch(genId);
+
+    var rate = document.querySelectorAll('input[type=checkbox][name=star]:checked').value;
+    console.log(rate);
+
+    // var rate = rating.value;
+    // console.log(rate);
+
+    
+    
+    var object =
+    {genre: genId}
+       
+    
+        
+    tmMovieSearch(object);
+
+    // grabs the users selected ratings and passes it to the fetch function
+
+
 
 });
 
 
 // fetch function for the movie data base.
-function tmMovieSearch(genId) {
+function tmMovieSearch(object) {
     
-    var genre = '&with_genres=' + genId
+    var genre = '&with_genres=' + object.genre
+    // var vote = '&vote_rating=' + rate
     var updatedtmUrl = tmdbUrl + genre;
     
     fetch(updatedtmUrl)
