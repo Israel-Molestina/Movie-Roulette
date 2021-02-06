@@ -4,7 +4,8 @@ var tmKey = 'api_key=efcca3762e356b7b95982ec994db2fbc';
 // OMDB key
 var omKey = '49cd7bff'
 // youtube Key
-var key = 'AIzaSyCENe0M7rpOxtAXyYNUbOuUQc_DMYZ_JU4';
+var tubeKeyIz = 'AIzaSyBE2H7aDx23tFRGKkNlWiX6UiVKdPVdNmA';
+var tubeKeyChin = 'AIzaSyAhxYQ0nbhFnVq9GPLuKCjXb_ny5G3XsnM';
 
 // URLs
 // TMBD url
@@ -18,8 +19,6 @@ var tuebUrl = 'https://www.googleapis.com/youtube/v3/search';
 var btnSub = document.querySelector('#submit');
 var genreMenu = document.querySelector('.genre');
 
-
-
 // click event listener for when user submits criteria
 btnSub.addEventListener('click', function() {
 
@@ -27,24 +26,15 @@ btnSub.addEventListener('click', function() {
     var genId = genreMenu.options[genreMenu.selectedIndex].value;
     console.log(genId);
 
-    var rate = document.querySelectorAll('input[type=checkbox][name=star]:checked').value;
+    var rate = document.querySelector('input[type=radio]:checked').value;
     console.log(rate);
 
-    // var rate = rating.value;
-    // console.log(rate);
-
-    
-    
+    // object that holds the movie criteria
     var object =
-    {genre: genId}
-       
-    
+    {genre: genId,
+     rating: rate}
         
     tmMovieSearch(object);
-
-    // grabs the users selected ratings and passes it to the fetch function
-
-
 
 });
 
@@ -53,8 +43,9 @@ btnSub.addEventListener('click', function() {
 function tmMovieSearch(object) {
     
     var genre = '&with_genres=' + object.genre
-    // var vote = '&vote_rating=' + rate
-    var updatedtmUrl = tmdbUrl + genre;
+    var vote = '&vote_average.gte=' + object.rating
+    var updatedtmUrl = tmdbUrl + genre + vote;
+    console.log(updatedtmUrl)
     
     fetch(updatedtmUrl)
         .then(function (response) {
@@ -67,8 +58,7 @@ function tmMovieSearch(object) {
             }
             // gonna put an else statment here if response is for some reason invalid
         })
-}''
-
+}
 
 // ombd fetch request for extra info on movie
 function omMovieSearch() {
@@ -91,17 +81,18 @@ function omMovieSearch() {
 omMovieSearch();
 
 
-// setting parameters for youtube fetch request
+//setting parameters for youtube fetch request
 var chanId = 'UCi8e0iOVk1fEOogdfu4YgfA';
 var options = {
     part: 'snippet',
-    key: key,
+    key: tubeKeyChin,
     maxResults: '1',
     type: 'video',
     channelId: chanId,
-    q: 'blade'
+    q: 'cat'
 }
-loadVid();
+
+// loadVid();
 // furns youtube fetch request
 function loadVid() {
 
@@ -109,6 +100,6 @@ function loadVid() {
         console.log(trailer)
         var vidId = trailer.items[0].id.videoId 
         var vid = 'https://www.youtube.com/embed/'+vidId
-    console.log(vid);
+        console.log(vid);
     })
 }
