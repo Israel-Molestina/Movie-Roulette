@@ -74,18 +74,31 @@ function randomMovie(returnJson){
     movieTitle(movieOption);
 }
 
-// Adds Movie title and description to designated areas
+// Adds Movie title and description to designated area
 function movieTitle(movieOption){
     var movieTitleEl = document.querySelector('#movieTitle');
     var movieTitleSpan = document.createElement('h2');
     var sumBox = document.querySelector('#descrip');
     var summarySpan = document.createElement('p');
 
+    if((movieTitleEl.innerHTML) & (sumBox.innerHTML) === ""){
+    movieTitleSpan.textContent = movieOption.title;
+    movieTitleEl.appendChild(movieTitleSpan);
+
+    summarySpan.textContent = movieOption.overview;
+    sumBox.appendChild(summarySpan);}
+    else {
+        movieTitleEl.innerHTML = ""
+        sumBox.innerHTML = ""
+        
     movieTitleSpan.textContent = movieOption.title;
     movieTitleEl.appendChild(movieTitleSpan);
 
     summarySpan.textContent = movieOption.overview;
     sumBox.appendChild(summarySpan);
+    }
+
+
 }
 
 
@@ -122,7 +135,7 @@ var options = {
 
 // loadVid();
 // furns youtube fetch request
-function loadVid() {
+/* function loadVid() {
 
     $.getJSON(tuebUrl, options, function(trailer) {
         console.log(trailer)
@@ -130,4 +143,4 @@ function loadVid() {
         var vid = 'https://www.youtube.com/embed/'+vidId
         console.log(vid);
     })
-};
+}; */
