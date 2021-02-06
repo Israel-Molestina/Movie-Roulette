@@ -1,88 +1,92 @@
-//API Key MovieDB efcca3762e356b7b95982ec994db2fbc
-//Youtube API Key AIzaSyCENe0M7rpOxtAXyYNUbOuUQc_DMYZ_JU4
-
+// API Keys
+// key for the moive database
 var tmKey = 'api_key=efcca3762e356b7b95982ec994db2fbc';
+// OMDB key
+var omKey = '49cd7bff'
+// youtube Key
+var key = 'AIzaSyCENe0M7rpOxtAXyYNUbOuUQc_DMYZ_JU4';
 
-// OMDB url
-var omdbUrl = 'http://www.omdbapi.com/?apikey=49cd7bff&t=';
-
+// URLs
 // TMBD url
-var tmdbUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=efcca3762e356b7b95982ec994db2fbc';
+var tmdbUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=efcca3762e356b7b95982ec994db2fbc&language=en-US';
+// OMDB url
+var omdbUrl = 'https://www.omdbapi.com/?apikey=49cd7bff&t=';
+// youtube url
+var tuebUrl = 'https://www.googleapis.com/youtube/v3/search';
 
-omMovieSearch();
+// asignment variables
+var btnSub = document.querySelector('#submit');
+var genreMenu = document.querySelector('.genre');
 
-tmMovieSearch();
+// click event listener for when user submits criteria
+btnSub.addEventListener('click', function() {
 
-genres();
-// loadYoutube();
-// executeYoutube();
+    var genId = genreMenu.options[genreMenu.selectedIndex].value;
+    console.log(genId);
+    tmMovieSearch(genId);
 
-// variables for TMDB fetch functions
-var year = [];
-
-
+});
 
 
+// fetch function for the movie data base.
+function tmMovieSearch(genId) {
+    
+    var genre = '&with_genres=' + genId
+    var updatedtmUrl = tmdbUrl + genre;
+    
+    fetch(updatedtmUrl)
+        .then(function (response) {
+
+            if (response.ok) {
+                response.json()
+                .then(function(returnJson) {
+                console.log(returnJson)
+                });
+            }
+            // gonna put an else statment here if response is for some reason invalid
+        })
+}''
+
+
+// ombd fetch request for extra info on movie
 function omMovieSearch() {
     var movieName = 'blade'
     var updatedomdbUrl = omdbUrl + movieName;
 
     fetch(updatedomdbUrl)
         .then(function (response) {
-            return response.json();
-        })
-        .then(function(returnJson) {
-            console.log(returnJson);
+
+            if (response.ok) {
+                response.json()
+                .then(function(returnJson) {
+                console.log(returnJson);
+                })
+            }
         })
 };
 
-function tmMovieSearch() {
-    var updatedtmUrl = tmdbUrl + '&include_adult=true';
+//calls the ombd fetch function
+omMovieSearch();
 
-    fetch(updatedtmUrl)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function(returnJson) {
-            console.log(returnJson)
-        })
 
-};
-
-function genres() {
-    var url = 'https://api.themoviedb.org/3/genre/movie/list?api_key=efcca3762e356b7b95982ec994db2fbc&language=en-US'
-
-    fetch(url)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function(genreJson) {
-            console.log(genreJson)
-        })
+// setting parameters for youtube fetch request
+var chanId = 'UCi8e0iOVk1fEOogdfu4YgfA';
+var options = {
+    part: 'snippet',
+    key: key,
+    maxResults: '1',
+    type: 'video',
+    channelId: chanId,
+    q: 'blade'
 }
+loadVid();
+// furns youtube fetch request
+function loadVid() {
 
-
-
-    var key = 'AIzaSyCENe0M7rpOxtAXyYNUbOuUQc_DMYZ_JU4';
-    var chanId = 'UCi8e0iOVk1fEOogdfu4YgfA';
-    var tuebUrl = 'https://www.googleapis.com/youtube/v3/search';
-
-    var options = {
-        part: 'snippet',
-        key: key,
-        maxResults: '1',
-        type: 'video',
-        channelId: chanId,
-        q: 'blade'
-    }
-    loadVid();
-
-    function loadVid() {
-        $.getJSON(tuebUrl, options, function(trailer) {
-            console.log(trailer)
-            var vidId = trailer.items[0].id.videoId 
-            console.log(vidId, trailer.items[0].id.videoId );
-            var vid = 'https://www.youtube.com/embed/'+vidId
-        console.log(vid);
-        })
-    }
+    $.getJSON(tuebUrl, options, function(trailer) {
+        console.log(trailer)
+        var vidId = trailer.items[0].id.videoId 
+        var vid = 'https://www.youtube.com/embed/'+vidId
+    console.log(vid);
+    })
+}
