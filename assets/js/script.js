@@ -52,12 +52,42 @@ function tmMovieSearch(object) {
             if (response.ok) {
                 response.json()
                 .then(function(returnJson) {
-                console.log(returnJson)
-                });
+                console.log(returnJson);
+                randomMovie(returnJson);
+                
+            });
+            
             }
+            
             // gonna put an else statment here if response is for some reason invalid
         })
+        
 }
+// Function to choose random movie 
+function randomMovie(returnJson){
+    var index = Math.floor(Math.random() * returnJson.results.length);
+    console.log(index);
+    console.log(returnJson.results[index])
+
+    var movieOption = returnJson.results[index]
+
+    movieTitle(movieOption);
+}
+
+// Adds Movie title and description to designated areas
+function movieTitle(movieOption){
+    var movieTitleEl = document.querySelector('#movieTitle');
+    var movieTitleSpan = document.createElement('h2');
+    var sumBox = document.querySelector('#descrip');
+    var summarySpan = document.createElement('p');
+
+    movieTitleSpan.textContent = movieOption.title;
+    movieTitleEl.appendChild(movieTitleSpan);
+
+    summarySpan.textContent = movieOption.overview;
+    sumBox.appendChild(summarySpan);
+}
+
 
 // ombd fetch request for extra info on movie
 function omMovieSearch() {
@@ -79,7 +109,6 @@ function omMovieSearch() {
 //calls the ombd fetch function
 omMovieSearch();
 
-
 //setting parameters for youtube fetch request
 var chanId = 'UCi8e0iOVk1fEOogdfu4YgfA';
 var options = {
@@ -88,8 +117,8 @@ var options = {
     maxResults: '1',
     type: 'video',
     channelId: chanId,
-    q: 'cat'
-};
+    q: 'blade'
+}
 
 // loadVid();
 // furns youtube fetch request
