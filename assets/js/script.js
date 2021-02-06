@@ -24,6 +24,7 @@ btnSub.addEventListener('click', function() {
     var genId = genreMenu.options[genreMenu.selectedIndex].value;
     console.log(genId);
     tmMovieSearch(genId);
+    
 
 });
 
@@ -41,11 +42,27 @@ function tmMovieSearch(genId) {
                 response.json()
                 .then(function(returnJson) {
                 console.log(returnJson)
-                });
+                randomMovie(returnJson)     
+            });
+            
             }
+            
             // gonna put an else statment here if response is for some reason invalid
         })
-}''
+        
+    
+}
+//Function to choose random movie 
+function randomMovie(returnJson){
+    var index = Math.floor(Math.random() * returnJson.results.length);
+    console.log(index);
+    console.log(returnJson.results[index])
+
+    var movieOption = returnJson.results[index]
+
+    return movieOption
+}
+
 
 
 // ombd fetch request for extra info on movie
