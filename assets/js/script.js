@@ -4,7 +4,8 @@ var tmKey = 'api_key=efcca3762e356b7b95982ec994db2fbc';
 // OMDB key
 var omKey = '49cd7bff'
 // youtube Key
-var key = 'AIzaSyCENe0M7rpOxtAXyYNUbOuUQc_DMYZ_JU4';
+var tubeKeyIz = 'AIzaSyBE2H7aDx23tFRGKkNlWiX6UiVKdPVdNmA';
+var tubeKeyChin = 'AIzaSyAhxYQ0nbhFnVq9GPLuKCjXb_ny5G3XsnM';
 
 // URLs
 // TMBD url
@@ -21,19 +22,29 @@ var genreMenu = document.querySelector('.genre');
 // click event listener for when user submits criteria
 btnSub.addEventListener('click', function() {
 
+    // grabs the users selected genre and rating and passes it to the fetch function
     var genId = genreMenu.options[genreMenu.selectedIndex].value;
     console.log(genId);
-    tmMovieSearch(genId);
-    
+
+    var rate = document.querySelector('input[type=radio]:checked').value;
+    console.log(rate);
+
+    // object that holds the movie criteria
+    var object =
+    {genre: genId,
+     rating: rate}
+        
+    tmMovieSearch(object);
 
 });
 
-
 // fetch function for the movie data base.
-function tmMovieSearch(genId) {
+function tmMovieSearch(object) {
     
-    var genre = '&with_genres=' + genId
-    var updatedtmUrl = tmdbUrl + genre;
+    var genre = '&with_genres=' + object.genre
+    var vote = '&vote_average.gte=' + object.rating
+    var updatedtmUrl = tmdbUrl + genre + vote;
+    console.log(updatedtmUrl)
     
     fetch(updatedtmUrl)
         .then(function (response) {
@@ -51,7 +62,6 @@ function tmMovieSearch(genId) {
             // gonna put an else statment here if response is for some reason invalid
         })
         
-    
 }
 // Function to choose random movie 
 function randomMovie(returnJson){
@@ -61,16 +71,15 @@ function randomMovie(returnJson){
 
     var movieOption = returnJson.results[index]
 
-    movieTitle(movieOption)
+    movieTitle(movieOption);
 }
-// Adds Movie title and description to designated areas
 
+// Adds Movie title and description to designated areas
 function movieTitle(movieOption){
     var movieTitleEl = document.querySelector('#movieTitle');
     var movieTitleSpan = document.createElement('h2');
     var sumBox = document.querySelector('#descrip');
     var summarySpan = document.createElement('p');
-
 
     movieTitleSpan.textContent = movieOption.title;
     movieTitleEl.appendChild(movieTitleSpan);
@@ -100,19 +109,18 @@ function omMovieSearch() {
 //calls the ombd fetch function
 omMovieSearch();
 
-
-// setting parameters for youtube fetch request
+//setting parameters for youtube fetch request
 var chanId = 'UCi8e0iOVk1fEOogdfu4YgfA';
 var options = {
     part: 'snippet',
-    key: key,
+    key: tubeKeyChin,
     maxResults: '1',
     type: 'video',
     channelId: chanId,
     q: 'blade'
 }
 
-loadVid();
+// loadVid();
 // furns youtube fetch request
 function loadVid() {
 
@@ -120,6 +128,6 @@ function loadVid() {
         console.log(trailer)
         var vidId = trailer.items[0].id.videoId 
         var vid = 'https://www.youtube.com/embed/'+vidId
-    console.log(vid);
+        console.log(vid);
     })
-}
+};
