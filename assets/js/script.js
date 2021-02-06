@@ -38,7 +38,6 @@ btnSub.addEventListener('click', function() {
 
 });
 
-
 // fetch function for the movie data base.
 function tmMovieSearch(object) {
     
@@ -90,7 +89,7 @@ var options = {
     type: 'video',
     channelId: chanId,
     q: 'cat'
-}
+};
 
 // loadVid();
 // furns youtube fetch request
@@ -102,4 +101,4 @@ function loadVid() {
         var vid = 'https://www.youtube.com/embed/'+vidId
         console.log(vid);
     })
-}
+};
