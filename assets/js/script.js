@@ -54,7 +54,7 @@ btnSub.addEventListener('click', function() {
 btnSave.addEventListener('click', function() {
     console.log($(this));
     var title = $(this)[0].ownerDocument.body.children[0].firstElementChild.nextElementSibling.lastElementChild.children[0].children[0].firstChild.innerHTML;
-    var summary = sumBox.innerHTML;
+    var summary = sumBox.textContent;
     var movieThings = {name: title,
                         description: summary}
     var key = title;
