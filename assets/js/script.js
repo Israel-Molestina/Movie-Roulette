@@ -17,10 +17,19 @@ var tuebUrl = 'https://www.googleapis.com/youtube/v3/search';
 
 // asignment variables
 var btnSub = document.querySelector('#submit');
-var genreMenu = document.querySelector('.genre');
 var btnSave = document.querySelector('#saveMovie');
+var btnPage = document.querySelector('#watchPage');
+var genreMenu = document.querySelector('.genre');
 var movieTitleEl = document.querySelector('#movieTitle');
 var sumBox = document.querySelector('#descrip');
+
+
+// event listener that will take user to their watched movies page
+btnPage.addEventListener('click', function() {
+    location.assign('watched.html');
+});
+
+
 
 // click event listener for when user submits criteria
 btnSub.addEventListener('click', function() {
@@ -46,14 +55,14 @@ btnSave.addEventListener('click', function() {
     console.log($(this));
     var title = $(this)[0].ownerDocument.body.children[0].firstElementChild.nextElementSibling.lastElementChild.children[0].children[0].firstChild.innerHTML;
     var summary = sumBox.innerHTML;
-    var movieThings = {description: summary}
-    var key = title;
+    var movieThings = {name: title,
+                       description: summary}
+    var key = 'Movie';
     var value = JSON.stringify(movieThings);
 
-    localStorage.setItem(key, value);
+    localStorage.setItem('key', value);
 
-    
-})
+});
 
 // fetch function for the movie data base.
 function tmMovieSearch(object) {
@@ -129,7 +138,7 @@ function tmTrailerSearch(searchMovie) {
                 .then(function(data) {
                 console.log(data);
                 
-                youtubeTrailer(data)
+                // youtubeTrailer(data)
             });
             
             }
@@ -140,31 +149,31 @@ function tmTrailerSearch(searchMovie) {
 }
 
 ////  Uses Movie ID to get Youtube ID \\\\\\\\
-function youtubeTrailer(data){
-    index = 0;
-    console.log(index)
-    var yourTrailer = data.results[0]
+// function youtubeTrailer(data){
+//     index = 0;
+//     console.log(index)
+//     var yourTrailer = data.results[0]
     
-    var searchIt = yourTrailer.key
-    console.log(yourTrailer);
-    console.log(searchIt);
+//     var searchIt = yourTrailer.key
+//     console.log(yourTrailer);
+//     console.log(searchIt);
 
-//setting parameters for youtube fetch request
-var chanId = 'UCi8e0iOVk1fEOogdfu4YgfA';
-var options = {
-    part: 'snippet',
-    key: tubeKeyChin,
-    maxResults: '1',
-    type: 'video',
-    channelId: chanId,
-    q: searchIt
-}
+// //setting parameters for youtube fetch request
+// var chanId = 'UCi8e0iOVk1fEOogdfu4YgfA';
+// var options = {
+//     part: 'snippet',
+//     key: tubeKeyChin,
+//     maxResults: '1',
+//     type: 'video',
+//     channelId: chanId,
+//     q: searchIt
+// }
 
 // loadVid();
 // furns youtube fetch request
-loadVid(options)
+// loadVid(options)
 
-}
+// }
 /* function loadVid(options) {
 
     $.getJSON(tuebUrl, options, function(trailer) {
@@ -176,21 +185,21 @@ loadVid(options)
 };  */
 
 // ombd fetch request for extra info on movie
-function omMovieSearch() {
-    var movieName = 'blade'
-    var updatedomdbUrl = omdbUrl + movieName;
+// function omMovieSearch() {
+//     var movieName = 'blade'
+//     var updatedomdbUrl = omdbUrl + movieName;
 
-    fetch(updatedomdbUrl)
-        .then(function (response) {
+//     fetch(updatedomdbUrl)
+//         .then(function (response) {
 
-            if (response.ok) {
-                response.json()
-                .then(function(returnJson) {
-                console.log(returnJson);
-                })
-            }
-        })
-};
+//             if (response.ok) {
+//                 response.json()
+//                 .then(function(returnJson) {
+//                 console.log(returnJson);
+//                 })
+//             }
+//         })
+// };
 
-//calls the ombd fetch function
-omMovieSearch();
+// //calls the ombd fetch function
+// omMovieSearch();
