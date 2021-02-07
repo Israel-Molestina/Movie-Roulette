@@ -56,11 +56,11 @@ btnSave.addEventListener('click', function() {
     var title = $(this)[0].ownerDocument.body.children[0].firstElementChild.nextElementSibling.lastElementChild.children[0].children[0].firstChild.innerHTML;
     var summary = sumBox.innerHTML;
     var movieThings = {name: title,
-                       description: summary}
-    var key = 'Movie';
+                        description: summary}
+    var key = title;
     var value = JSON.stringify(movieThings);
 
-    localStorage.setItem('key', value);
+    localStorage.setItem(key, value);
 
 });
 
