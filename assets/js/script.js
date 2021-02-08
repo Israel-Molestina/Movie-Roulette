@@ -13,7 +13,7 @@ var tmdbUrl = 'https://api.themoviedb.org/3/discover/movie?api_key=efcca3762e356
 // OMDB url
 var omdbUrl = 'https://www.omdbapi.com/?apikey=49cd7bff&t=';
 // youtube url
-var tuebUrl = 'https://www.googleapis.com/youtube/v3/search';
+var tubebUrl = 'https://www.googleapis.com/youtube/v3/videos';
 
 // asignment variables
 var btnSub = document.querySelector('#submit');
@@ -99,7 +99,7 @@ function randomMovie(returnJson){
 
     movieTitle(movieOption);
 }
-var searchMovie
+
 // Adds Movie title and description to designated area
 function movieTitle(movieOption){
     var movieTitleSpan = document.createElement('h2');
@@ -121,7 +121,7 @@ function movieTitle(movieOption){
     summarySpan.textContent = movieOption.overview;
     sumBox.appendChild(summarySpan);
     }
-    searchMovie = movieOption.id;
+    var searchMovie = movieOption.id;
     tmTrailerSearch(searchMovie)
 }
 /// First step of using MovieID to get  Youtube ID for trailer
@@ -138,7 +138,7 @@ function tmTrailerSearch(searchMovie) {
                 .then(function(data) {
                 console.log(data);
                 
-                // youtubeTrailer(data)
+                youtubeTrailer(data);
             });
             
             }
@@ -148,41 +148,36 @@ function tmTrailerSearch(searchMovie) {
         
 }
 
-////  Uses Movie ID to get Youtube ID \\\\\\\\
-// function youtubeTrailer(data){
-//     index = 0;
-//     console.log(index)
-//     var yourTrailer = data.results[0]
-    
-//     var searchIt = yourTrailer.key
-//     console.log(yourTrailer);
-//     console.log(searchIt);
+//  Uses Movie ID to get Youtube ID \\\\\\\\
+function youtubeTrailer(data){
+    var yourTrailer = data.results[0]
+    console.log(yourTrailer)
+    var searchIt = yourTrailer.key
+    console.log(searchIt);
 
-// //setting parameters for youtube fetch request
-// var chanId = 'UCi8e0iOVk1fEOogdfu4YgfA';
-// var options = {
-//     part: 'snippet',
-//     key: tubeKeyChin,
-//     maxResults: '1',
-//     type: 'video',
-//     channelId: chanId,
-//     q: searchIt
-// }
+    //setting parameters for youtube fetch request
+    var options = {
+        part: 'player',
+        id: searchIt,
+        key: tubeKeyChin
+    }
 
-// loadVid();
-// furns youtube fetch request
-// loadVid(options)
+    loadVid(options);
 
-// }
-/* function loadVid(options) {
+}
+function loadVid(options) {
 
-    $.getJSON(tuebUrl, options, function(trailer) {
+    $.getJSON(tubebUrl, options, function(trailer) {
         console.log(trailer)
-        var vidId = trailer.items[0].id.videoId 
-        var vid = 'https://www.youtube.com/embed/'+vidId
+        var vid = trailer.items[0].player.embedHtml
         console.log(vid);
+        var vidSplit = vid.split('//')
+        console.log(vidSplit);
+        // var vidId = trailer.items[0].id.videoId 
+        // var vid = 'https://www.youtube.com/embed/'+vidId
+        // console.log(vid);
     })
-};  */
+};
 
 // ombd fetch request for extra info on movie
 // function omMovieSearch() {
