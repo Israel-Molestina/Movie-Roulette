@@ -174,17 +174,11 @@ btnSave.addEventListener('click', function() {
 // hide instructions to get movie
 function hideIntro(){
     var introEl = document.getElementById('instructions');
-    if (introEl.style.display === 'none'){
-        introEl.style.display = 'block';
-    } else{
-        introEl.style.display = 'none';
-    }
+    introEl.style.display = 'none'
+    
     var showMovieEl = document.getElementById('showmovie');
-    if (showMovieEl.style.display === 'block'){
-        showMovieEl.style.display ='none';
-    } else{
-        showMovieEl.style.display = 'block';
-    }
+    showMovieEl.style.display = 'block'
+    
 }
 
 // fetch function for the movie data base.
