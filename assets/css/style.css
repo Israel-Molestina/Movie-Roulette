@@ -7,6 +7,12 @@
 #movieSecton{
     background: #172A3A;
 }
+#instructions{
+    display: block;
+}
+#showmovie{
+    display: none;
+}
 #footer {
     background: #004346;
 }
