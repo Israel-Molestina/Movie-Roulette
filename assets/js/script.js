@@ -1,4 +1,4 @@
-// API Keys
+//API Keys
 // key for the moive database
 var tmKey = 'api_key=efcca3762e356b7b95982ec994db2fbc';
 // OMDB key
@@ -27,7 +27,6 @@ var trailerEl = document.createElement('iframe');
 var movieTitleSpan = document.createElement('h2');
 var summarySpan = document.createElement('p');
 
-
 // event listener that will take user to their watched movies page
 btnPage.addEventListener('click', function() {
     location.assign('watched.html');
@@ -55,10 +54,13 @@ btnSub.addEventListener('click', function() {
 // event listener that will save movies along with their info to local storage in an object form
 btnSave.addEventListener('click', function() {
     console.log($(this));
-    var title = $(this)[0].ownerDocument.body.children[0].firstElementChild.nextElementSibling.lastElementChild.children[0].children[0].firstChild.innerHTML;
-    var summary = sumBox.textContent;
+    var title = movieTitleSpan.textContent;
+    var summary = summarySpan.textContent;
+    var trailer = trailerEl.src;
+    console.log(trailer);
     var movieThings = {name: title,
-                        description: summary}
+                        description: summary,
+                        trailerUrl: trailer}
     var key = title;
     var value = JSON.stringify(movieThings);
 
@@ -187,7 +189,6 @@ function parseTrailer(trailer) {
     insertMovieTrailer(newVidHTTP);
 
 };
-
 
 
 // ombd fetch request for extra info on movie
