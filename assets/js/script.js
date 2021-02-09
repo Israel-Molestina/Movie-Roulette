@@ -45,8 +45,11 @@ btnSub.addEventListener('click', function() {
     var actor = document.querySelector('[name="searchactor"]').value;
     console.log(actor);
     
+    //var director = document.querySelector('[name="director"]').value
+    //tmdirectorSearch(director)
+    hideIntro();
     // Function to search for Actor in Database to get Actor ID
-    tmActorSearch(actor)
+    tmActorSearch(actor);
 
     function tmActorSearch(actor) {
     
@@ -86,9 +89,31 @@ btnSub.addEventListener('click', function() {
                 }); 
                 }
             })
-
         }
 });
+
+
+
+// hide instructions to get movie
+    function hideIntro(){
+        var introEl = document.getElementById('instructions');
+        if (introEl.style.display === 'none'){
+            introEl.style.display = 'block';
+            console.log(introEl)
+        } else{
+            introEl.style.display = 'none';
+            console.log(introEl)
+        }
+        var showMovieEl = document.getElementById('showmovie');
+        if (showMovieEl.style.display === 'block'){
+            showMovieEl.style.display ='none';
+            console.log(showMovieEl);
+        } else{
+            showMovieEl.style.display = 'block';
+            console.log(showMovieEl);
+        }
+    }
+
 
 // event listener that will save movies along with their info to local storage in an object form
 btnSave.addEventListener('click', function() {
@@ -109,7 +134,7 @@ btnSave.addEventListener('click', function() {
 
 // fetch function for the movie data base.
 function tmMovieSearch(object) {
-    
+    console.log(object)
     var genre = '&with_genres=' + object.genre
     var vote = '&vote_average.gte=' + object.rating
     var act = '&with_cast=' + object.actor
@@ -251,3 +276,44 @@ function parseTrailer(trailer) {
 
 // //calls the ombd fetch function
 // omMovieSearch();
+
+/* function tmDirectorSearch(director) {
+    
+    var directorSearch = 'https://api.themoviedb.org/3/search/person?api_key=efcca3762e356b7b95982ec994db2fbc&language=en-US&'
+    console.log('---------' + director);
+    director = (director.replace(/\s/g ,"%20"));
+    var directorQuery = 'query=' + director;
+    console.log(actor);
+    console.log(actor.replace);
+    var directorUrl = directorSearch + directorQuery + '&page=1&include_adult=false';
+    
+    
+    console.log(directorUrl)
+    
+    fetch(directorUrl)
+        .then(function (response) {
+
+            if (response.ok) {
+                
+                
+                console.log('-----'+ response.url);
+
+                response.json()
+                
+                .then(function(direct) {
+                    var directorId = direct.results[0].id
+                    console.log(direct.results[0].id);
+                    console.log(directorId);
+                    
+                    var object =
+                    {genre: genId,
+                    rating: rate,
+                    actor: actorId,
+                    filmCrew: direct
+                
+                };
+                tmMovieSearch(object)
+            }); 
+            }
+        })
+    } */
