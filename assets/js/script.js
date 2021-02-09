@@ -42,13 +42,52 @@ btnSub.addEventListener('click', function() {
     var rate = document.querySelector('input[type=radio]:checked').value;
     console.log(rate);
 
-    // object that holds the movie criteria
-    var object =
-    {genre: genId,
-     rating: rate}
-        
-    tmMovieSearch(object);
+    var actor = document.querySelector('[name="searchactor"]').value;
+    console.log(actor);
+    
+    // Function to search for Actor in Database to get Actor ID
+    tmActorSearch(actor)
 
+    function tmActorSearch(actor) {
+    
+        var actorSearch = 'https://api.themoviedb.org/3/search/person?api_key=efcca3762e356b7b95982ec994db2fbc&language=en-US&'
+        console.log('---------' + actor);
+        actor = (actor.replace(/\s/g ,"%20"));
+        var actorQuery = 'query=' + actor;
+        console.log(actor);
+        console.log(actor.replace);
+        var actorUrl = actorSearch + actorQuery + '&page=1&include_adult=false';
+        
+        
+        console.log(actorUrl)
+        
+        fetch(actorUrl)
+            .then(function (response) {
+    
+                if (response.ok) {
+                    
+                    
+                    console.log('-----'+ response.url);
+    
+                    response.json()
+                    
+                    .then(function(act) {
+                        var actorId = act.results[0].id
+                        console.log(act.results[0].id);
+                        console.log(actorId);
+                        
+                        var object =
+                        {genre: genId,
+                        rating: rate,
+                        actor: actorId
+                    
+                    };
+                    tmMovieSearch(object)
+                }); 
+                }
+            })
+
+        }
 });
 
 // event listener that will save movies along with their info to local storage in an object form
@@ -73,7 +112,9 @@ function tmMovieSearch(object) {
     
     var genre = '&with_genres=' + object.genre
     var vote = '&vote_average.gte=' + object.rating
-    var updatedtmUrl = tmdbUrl + genre + vote;
+    var act = '&with_cast=' + object.actor
+
+    var updatedtmUrl = tmdbUrl + genre + vote + act;
     console.log(updatedtmUrl)
     
     fetch(updatedtmUrl)
