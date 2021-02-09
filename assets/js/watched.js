@@ -4,11 +4,11 @@
  // assignment variables
  var movieTitle = document.querySelector('#movieTitle');
  var movieDescript = document.querySelector('#descrip');
+ var movieTrailer = document.querySelector('#movieTrailer');
+ var savedTrailer = document.createElement('iframe');
 
 // will load the saved movies when user goes to their movies page
 $('document').ready(function() {
-
-   
     
     var savedSidebar = document.querySelector('#savedBar');
     
@@ -43,8 +43,10 @@ $(document).on('click', '.userMovies', function() {
     console.log(name);
     var movieInfo = JSON.parse(localStorage.getItem(name));
     console.log(movieInfo);
+    savedTrailer.setAttribute('src', movieInfo.trailerUrl)
 
-    movieTitle.textContent = name
-    movieDescript.textContent = movieInfo.description
+    movieTitle.textContent = name;
+    movieDescript.textContent = movieInfo.description;
+    movieTrailer.appendChild(savedTrailer);
     
 })
