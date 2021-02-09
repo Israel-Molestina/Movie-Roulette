@@ -22,14 +22,16 @@ var btnPage = document.querySelector('#watchPage');
 var genreMenu = document.querySelector('.genre');
 var movieTitleEl = document.querySelector('#movieTitle');
 var sumBox = document.querySelector('#descrip');
+var insertTrailer = document.querySelector('#movieTrailer');
+var trailerEl = document.createElement('iframe');
+var movieTitleSpan = document.createElement('h2');
+var summarySpan = document.createElement('p');
 
 
 // event listener that will take user to their watched movies page
 btnPage.addEventListener('click', function() {
     location.assign('watched.html');
 });
-
-
 
 // click event listener for when user submits criteria
 btnSub.addEventListener('click', function() {
@@ -88,7 +90,8 @@ function tmMovieSearch(object) {
             // gonna put an else statment here if response is for some reason invalid
         })
         
-}
+};
+
 // Function to choose random movie 
 function randomMovie(returnJson){
     var index = Math.floor(Math.random() * returnJson.results.length);
@@ -97,33 +100,30 @@ function randomMovie(returnJson){
 
     var movieOption = returnJson.results[index]
 
-    movieTitle(movieOption);
-}
+    insertMovieInfo(movieOption);
+};
 
 // Adds Movie title and description to designated area
-function movieTitle(movieOption){
-    var movieTitleSpan = document.createElement('h2');
-    var summarySpan = document.createElement('p');
-
-    if((movieTitleEl.innerHTML) & (sumBox.innerHTML) === ""){
-    movieTitleSpan.textContent = movieOption.title;
-    movieTitleEl.appendChild(movieTitleSpan);
-
-    summarySpan.textContent = movieOption.overview;
-    sumBox.appendChild(summarySpan);}
-    else {
-        movieTitleEl.innerHTML = ""
-        sumBox.innerHTML = ""
+function insertMovieInfo(movieOption){
         
     movieTitleSpan.textContent = movieOption.title;
     movieTitleEl.appendChild(movieTitleSpan);
 
     summarySpan.textContent = movieOption.overview;
     sumBox.appendChild(summarySpan);
-    }
+
     var searchMovie = movieOption.id;
     tmTrailerSearch(searchMovie)
-}
+};
+
+// inserts the movie trailer
+function insertMovieTrailer(newVidHTTP) {
+    
+    trailerEl.setAttribute('src', newVidHTTP);
+    insertTrailer.appendChild(trailerEl);
+
+};
+
 /// First step of using MovieID to get  Youtube ID for trailer
 function tmTrailerSearch(searchMovie) {
     var plugInUrl = 'https://api.themoviedb.org/3/movie/' + searchMovie + '/videos?api_key=efcca3762e356b7b95982ec994db2fbc&language=en-US';
@@ -143,10 +143,9 @@ function tmTrailerSearch(searchMovie) {
             
             }
             
-            
         })
         
-}
+};
 
 //  Uses Movie ID to get Youtube ID \\\\\\\\
 function youtubeTrailer(data){
@@ -164,20 +163,32 @@ function youtubeTrailer(data){
 
     loadVid(options);
 
-}
+};
+
+// makes a fetch request to youtube api
 function loadVid(options) {
 
     $.getJSON(tubebUrl, options, function(trailer) {
-        console.log(trailer)
-        var vid = trailer.items[0].player.embedHtml
-        console.log(vid);
-        var vidSplit = vid.split('//')
-        console.log(vidSplit);
-        // var vidId = trailer.items[0].id.videoId 
-        // var vid = 'https://www.youtube.com/embed/'+vidId
-        // console.log(vid);
+        parseTrailer(trailer);
     })
+
 };
+
+function parseTrailer(trailer) {
+
+    var vid = trailer.items[0].player.embedHtml
+    console.log(vid);
+    var vidSplit = vid.split('//')
+    console.log(vidSplit);
+    var vidSplitAgain = vidSplit[1].split(' ')[0];
+    console.log(vidSplitAgain);
+    var newVid = vidSplitAgain.substring(0, vidSplitAgain.length - 1);
+    var newVidHTTP = 'https://' + newVid;
+    insertMovieTrailer(newVidHTTP);
+
+};
+
+
 
 // ombd fetch request for extra info on movie
 // function omMovieSearch() {
