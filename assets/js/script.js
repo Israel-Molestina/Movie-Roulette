@@ -113,6 +113,7 @@ btnSub.addEventListener('click', function() {
         }
     }
 
+    // gets the user selected actor and adds it to the updated url
     function tmActorSearch(updatedtmUrl) {
 
         var actor = document.querySelector('[name="searchactor"]').value;
@@ -150,63 +151,6 @@ btnSub.addEventListener('click', function() {
             tmMovieSearch(updatedtmUrl);
         }
     }
-
-    // grabs the users selected genre and rating and passes it to the fetch function
-    // var genId = genreMenu.options[genreMenu.selectedIndex].value;
-    // console.log(genId);
-
-    // var rate = document.querySelector('input[type=radio]:checked').value;
-    // console.log(rate);
-
-    // var actor = document.querySelector('[name="searchactor"]').value;
-    // console.log(actor);
-    
-    //var director = document.querySelector('[name="director"]').value
-    //tmdirectorSearch(director)
-    
-    // Function to search for Actor in Database to get Actor ID
-    // tmActorSearch(actor);
-
-    // function tmActorSearch(actor) {
-    
-    //     var actorSearch = 'https://api.themoviedb.org/3/search/person?api_key=efcca3762e356b7b95982ec994db2fbc&language=en-US&'
-    //     console.log('---------' + actor);
-    //     actor = (actor.replace(/\s/g ,"%20"));
-    //     var actorQuery = 'query=' + actor;
-    //     console.log(actor);
-    //     console.log(actor.replace);
-    //     var actorUrl = actorSearch + actorQuery + '&page=1';
-        
-        
-    //     console.log(actorUrl)
-        
-    //     fetch(actorUrl)
-    //         .then(function (response) {
-    
-    //             if (response.ok) {
-                    
-                    
-    //                 console.log('-----'+ response.url);
-    
-    //                 response.json()
-                    
-    //                 .then(function(act) {
-    //                     var actorId = act.results[0].id
-    //                     console.log(act.results[0].id);
-    //                     console.log(actorId);
-                        
-                        
-    //                     var object =
-    //                     {genre: genId,
-    //                     rating: rate,
-    //                     actor: actorId
-                    
-    //                 };
-    //                 tmMovieSearch(object)
-    //             }); 
-    //             }
-    //         })
-    // }
 });
 
 
@@ -245,13 +189,6 @@ function hideIntro(){
 
 // fetch function for the movie data base.
 function tmMovieSearch(updatedtmUrl) {
-    // console.log(object)
-    // var genre = '&with_genres=' + object.genre
-    // var vote = '&vote_average.gte=' + object.rating
-    // var act = '&with_cast=' + object.actor
-
-    // var updatedtmUrl = tmdbUrl + genre + vote + act;
-    // console.log(updatedtmUrl)
     
     fetch(updatedtmUrl)
         .then(function (response) {
@@ -382,44 +319,3 @@ function parseTrailer(trailer) {
 
 // //calls the ombd fetch function
 // omMovieSearch();
-
-/* function tmDirectorSearch(director) {
-    
-    var directorSearch = 'https://api.themoviedb.org/3/search/person?api_key=efcca3762e356b7b95982ec994db2fbc&language=en-US&'
-    console.log('---------' + director);
-    director = (director.replace(/\s/g ,"%20"));
-    var directorQuery = 'query=' + director;
-    console.log(actor);
-    console.log(actor.replace);
-    var directorUrl = directorSearch + directorQuery + '&page=1&include_adult=false';
-    
-    
-    console.log(directorUrl)
-    
-    fetch(directorUrl)
-        .then(function (response) {
-
-            if (response.ok) {
-                
-                
-                console.log('-----'+ response.url);
-
-                response.json()
-                
-                .then(function(direct) {
-                    var directorId = direct.results[0].id
-                    console.log(direct.results[0].id);
-                    console.log(directorId);
-                    
-                    var object =
-                    {genre: genId,
-                    rating: rate,
-                    actor: actorId,
-                    filmCrew: direct
-                
-                };
-                tmMovieSearch(object)
-            }); 
-            }
-        })
-    } */
