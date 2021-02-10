@@ -71,11 +71,11 @@ AS an indecisive movie lover, I WANT to be presented with a random movie based o
 
 ### Intro Page
 
-![intro-page](assets/pics/MR- titlescreen.png)
+![intro-page](assets/pics/MR-titlescreen.png)
 
 ### Generated Movie
 
-![generated-movie](assets/pics/MR- MovieChose.png)
+![generated-movie](assets/pics/MR-MovieChose.png)
 
 ### MyMovies Page
 
