@@ -22,8 +22,36 @@
 section{
     background: #09BC8A;
     margin: 15px;
+    
+}
+#castform{
+    background: #09BC8A;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto
 }
 header{
     justify-content: center;
 }
+#selectrate {
+    margin-left: 5px;
+}
 
+.nowrap{
+    white-space: nowrap;
+}
+.grid-x>.medium-11{
+    margin: 5px;
+}
+.formbuttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button.success.button{
+    width: 50%;
+    border-radius: 5px;
+    box-shadow: 5px 10px 18px #172A3A ;
+}

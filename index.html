@@ -63,21 +63,21 @@
                     </form>
                     <form class="cell">
                         <section class="grid-y">
-                            <fieldset class="cell medium-8">
+                            <fieldset id="selectrate" class="cell medium-8">
 
                                 <legend>Check The ratings</legend>
 
-                                <input id="1star" name="star" value="1" type="radio" /><label for="1">1 star</label>
-                                <input id="2star" name="star" value="3.5" type="radio" /><label for="2">2 star</label>
-                                <input id="3star" name="star" value="5.5" type="radio" /><label for="3">3 star</label>
-                                <input id="4star" name="star" value="7.5" type="radio" /><label for="4">4 star</label>
-                                <input id="5star" name="star" value="8.5" type="radio" /><label for="5">5 star</label>
+                                <span class="nowrap"><input id="1star" name="star" value="1" type="radio" /><label for="1">1 star</label></span>
+                                <span class="nowrap"><input id="2star" name="star" value="3.5" type="radio" /><label for="2">2 star</label></span>
+                                <span class="nowrap"><input id="3star" name="star" value="5.5" type="radio" /><label for="3">3 star</label></span>
+                                <span class="nowrap"><input id="4star" name="star" value="7.5" type="radio" /><label for="4">4 star</label></span>
+                                <span class="nowrap"><input id="5star" name="star" value="8.5" type="radio" /><label for="5">5 star</label></span>
 
                             </fieldset>
                         </section>
                     </form>
                     <section id="yearRange" class="cell"></section>
-                    <form class="cell">
+                    <form id="castform"class="cell">
                         <article class="grid-x">
                         <section id="Director" class="cell medium-11">
 
@@ -95,7 +95,7 @@
                             </section>
                         </article>
                     </form>
-
+                    <div class="formbuttons">
                     <button type="submit" id="submit" class="success button">
                         Submit
                     </button>
