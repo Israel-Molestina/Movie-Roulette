@@ -230,8 +230,22 @@ function randomMovie(returnJson){
     insertMovieInfo(movieOption);
 };
 
+
+
+// inserts the movie trailer
+function insertMovieTrailer(newVidHTTP) {
+    
+    trailerEl.setAttribute('src', newVidHTTP);
+    insertTrailer.appendChild(trailerEl);
+
+};
+
 /// First step of using MovieID to get  Youtube ID for trailer
-function tmTrailerSearch(searchMovie) {
+function tmTrailerSearch(searchMovie, posterPath) {
+    console.log(posterPath);
+    //Clears Poster Img 
+    insertTrailer.innerHTML= '';
+    
     var plugInUrl = 'https://api.themoviedb.org/3/movie/' + searchMovie + '/videos?api_key=efcca3762e356b7b95982ec994db2fbc&language=en-US';
     var searchTrailerUrl = plugInUrl;
     console.log(searchTrailerUrl)
@@ -243,18 +257,37 @@ function tmTrailerSearch(searchMovie) {
                 response.json()
                 .then(function(data) {
                 console.log(data);
+                // Checks to see if there is a movie Trailer available
+                //If not grabs movie poster path
+                console.log(data.results.length)
                 
-                // youtubeTrailer(data);
+                if(data.results.length < 1){
+                    setPoster(posterPath)
+                    console.log(posterPath);
+                    console.log('-----Search FOR POSTER----')
+                }else {
+                    console.log('-----Found Trailer----')
+                    // youtubeTrailer(data);
+                }
             });
-            
             }
-            
         })
-        
 };
+// Display's movie Poster
+function setPoster(posterPath){
+    console.log(posterPath);
+    var posterEl = document.createElement('img');
+    var posterUrl = 'https://image.tmdb.org/t/p/w342' + posterPath;
+    
+    console.log(posterUrl);
 
+    posterEl.setAttribute('src', posterUrl)
+
+    insertTrailer.appendChild(posterEl);
+}
 //  Uses Movie ID to get Youtube ID \\\\\\\\
 function youtubeTrailer(data){
+
     var yourTrailer = data.results[0]
     console.log(yourTrailer)
     var searchIt = yourTrailer.key
@@ -291,8 +324,8 @@ function parseTrailer(trailer) {
 };
 
 // Adds Movie title and description to designated area
-function insertMovieInfo(movieOption){
-        
+function insertMovieInfo(movieOption, posterPath){
+
     movieTitleSpan.textContent = movieOption.title;
     movieTitleEl.appendChild(movieTitleSpan);
 
@@ -300,7 +333,9 @@ function insertMovieInfo(movieOption){
     sumBox.appendChild(summarySpan);
 
     var searchMovie = movieOption.id;
-    tmTrailerSearch(searchMovie)
+    var posterPath = movieOption.poster_path;
+    console.log(posterPath);
+    tmTrailerSearch(searchMovie, posterPath)
 };
 
 // inserts the movie trailer
