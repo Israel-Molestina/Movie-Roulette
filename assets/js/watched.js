@@ -44,8 +44,17 @@ $(document).on('click', '.userMovies', function() {
 
     var movieInfo = JSON.parse(localStorage.getItem(name));
     console.log(movieInfo);
-    savedTrailer.setAttribute('src', movieInfo.trailerUrl)
-
+    if(movieInfo.trailerUrl = ''){
+        console.log(movieInfo.trailerUrl);
+        console.log(movieInfo);
+        var posterSaved = document.createElement('img');
+        
+        posterSaved.setAttribute('src', movieInfo.posterUrl)
+        movieTrailer.appendChild(posterSaved);
+        console.log(posterSaved);
+    }else{
+        savedTrailer.setAttribute('src', movieInfo.trailerUrl)
+    }
     movieTitle.textContent = name;
     movieDescript.textContent = movieInfo.description;
     movieTrailer.appendChild(savedTrailer);
