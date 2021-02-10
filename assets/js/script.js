@@ -1,8 +1,6 @@
 //API Keys
-// key for the moive database
+// key for the movie database
 var tmKey = 'api_key=efcca3762e356b7b95982ec994db2fbc';
-// OMDB key
-var omKey = '49cd7bff'
 // youtube Key
 var tubeKeyIz = 'AIzaSyBE2H7aDx23tFRGKkNlWiX6UiVKdPVdNmA';
 var tubeKeyChin = 'AIzaSyAhxYQ0nbhFnVq9GPLuKCjXb_ny5G3XsnM';
@@ -15,7 +13,7 @@ var omdbUrl = 'https://www.omdbapi.com/?apikey=49cd7bff&t=';
 // youtube url
 var tubebUrl = 'https://www.googleapis.com/youtube/v3/videos';
 
-// asignment variables
+// assignment variables
 var btnSub = document.querySelector('#submit');
 var btnSave = document.querySelector('#saveMovie');
 var btnPage = document.querySelector('#watchPage');
@@ -46,7 +44,7 @@ btnSub.addEventListener('click', function() {
 // event listener that will save movies along with their info to local storage in an object form
 btnSave.addEventListener('click', function() {
 
-    //assingment variables
+    //assignment variables
     var title = movieTitleSpan.textContent;
     var summary = summarySpan.textContent;
     var trailer = trailerEl.src;
@@ -142,7 +140,7 @@ function tmDirectorSearch (updatedtmUrl) {
                         var directorId = direct.results[0].id
                         console.log(directorId);
 
-                        var directID = '&with_people=' + directorId;
+                        var directID = '&with_crew=' + directorId;
 
                         updatedtmUrl = updatedtmUrl + directID;
                         tmActorSearch(updatedtmUrl);
@@ -182,7 +180,7 @@ function tmActorSearch(updatedtmUrl) {
                         var actorId = act.results[0].id
                         console.log(actorId);
 
-                        var act = '&with_people=' + actorId;
+                        var act = '&with_cast=' + actorId;
                         updatedtmUrl = updatedtmUrl + act;
                         tmMovieSearch(updatedtmUrl);
                     }); 
@@ -338,25 +336,8 @@ function insertMovieInfo(movieOption, posterPath){
 function insertMovieTrailer(newVidHTTP) {
     
     trailerEl.setAttribute('src', newVidHTTP);
+    trailerEl.setAttribute('width', 460);
+    trailerEl.setAttribute('height', 215);
+
     insertTrailer.appendChild(trailerEl);
 };
-
-// ombd fetch request for extra info on movie
-// function omMovieSearch() {
-//     var movieName = 'blade'
-//     var updatedomdbUrl = omdbUrl + movieName;
-
-//     fetch(updatedomdbUrl)
-//         .then(function (response) {
-
-//             if (response.ok) {
-//                 response.json()
-//                 .then(function(returnJson) {
-//                 console.log(returnJson);
-//                 })
-//             }
-//         })
-// };
-
-// //calls the ombd fetch function
-// omMovieSearch();
