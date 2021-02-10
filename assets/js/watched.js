@@ -32,7 +32,7 @@ $('document').ready(function() {
         // appends movie names to list of saved movies
         savedSidebar.append(savedMovies);
         savedMovies.append(savedTitle);
-        savedMovies.classList.add('userMovies')
+        savedMovies.classList.add('userMovies', 'nunito');
         savedTitle.textContent = film.name;
 
     });
