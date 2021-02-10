@@ -6,6 +6,8 @@
  var movieDescript = document.querySelector('#descrip');
  var movieTrailer = document.querySelector('#movieTrailer');
  var savedTrailer = document.createElement('iframe');
+ var myRating = document.querySelector('#myRating');
+ var myNotes = document.querySelector('#myNotes');
 
 // will load the saved movies when user goes to their movies page
 $('document').ready(function() {
@@ -38,9 +40,8 @@ $('document').ready(function() {
 
 $(document).on('click', '.userMovies', function() {
 
-    console.log($(this));
     var name = $(this)[0].innerText
-    console.log(name);
+
     var movieInfo = JSON.parse(localStorage.getItem(name));
     console.log(movieInfo);
     savedTrailer.setAttribute('src', movieInfo.trailerUrl)
@@ -48,5 +49,7 @@ $(document).on('click', '.userMovies', function() {
     movieTitle.textContent = name;
     movieDescript.textContent = movieInfo.description;
     movieTrailer.appendChild(savedTrailer);
+    myRating.textContent = movieInfo.userRating;
+    myNotes.textContent = movieInfo.notes;
     
 })
