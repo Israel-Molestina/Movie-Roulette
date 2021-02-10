@@ -24,6 +24,7 @@ var movieTitleEl = document.querySelector('#movieTitle');
 var sumBox = document.querySelector('#descrip');
 var insertTrailer = document.querySelector('#movieTrailer');
 var trailerEl = document.createElement('iframe');
+var posterEl = document.createElement('img');
 var movieTitleSpan = document.createElement('h2');
 var summarySpan = document.createElement('p');
 var notFound = document.getElementById('notFound');
@@ -49,12 +50,14 @@ btnSave.addEventListener('click', function() {
     var title = movieTitleSpan.textContent;
     var summary = summarySpan.textContent;
     var trailer = trailerEl.src;
+    var poster = posterEl.src;
     var rating = document.querySelector('input[name=userStar]:checked').value;
     var userDescript = document.querySelector('#userInput').value;
 
     var movieThings = {name: title,
         description: summary,
         trailerUrl: trailer,
+        posterUrl: poster,
         userRating: rating,
         notes: userDescript}
 
@@ -144,7 +147,7 @@ function tmDirectorSearch (updatedtmUrl) {
                         updatedtmUrl = updatedtmUrl + directID;
                         tmActorSearch(updatedtmUrl);
                     });
-                   
+                
                 }; 
             })
     }
@@ -269,8 +272,8 @@ function tmTrailerSearch(searchMovie, posterPath) {
 // Display's movie Poster
 function setPoster(posterPath){
     console.log(posterPath);
-    var posterEl = document.createElement('img');
-    var posterUrl = 'https://image.tmdb.org/t/p/w342' + posterPath;
+    
+    var posterUrl = 'https://image.tmdb.org/t/p/w92' + posterPath;
     
     console.log(posterUrl);
 
@@ -282,7 +285,7 @@ function setPoster(posterPath){
 function youtubeTrailer(data){
 
     var yourTrailer = data.results[0]
-    console.log(yourTrailer)
+    
     var searchIt = yourTrailer.key
 
     //setting parameters for youtube fetch request
@@ -327,7 +330,7 @@ function insertMovieInfo(movieOption, posterPath){
 
     var searchMovie = movieOption.id;
     var posterPath = movieOption.poster_path;
-    console.log(posterPath);
+    
     tmTrailerSearch(searchMovie, posterPath)
 };
 
@@ -336,7 +339,6 @@ function insertMovieTrailer(newVidHTTP) {
     
     trailerEl.setAttribute('src', newVidHTTP);
     insertTrailer.appendChild(trailerEl);
-
 };
 
 // ombd fetch request for extra info on movie
