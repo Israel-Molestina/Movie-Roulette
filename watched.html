@@ -21,25 +21,54 @@
 <body>
     <main class="grid-y grid-frame">
     <header id="siteHeader" class="grid-x">
-                <div class="cell-sm-12">
+
+            <div class="cell-sm-12">
                 <h1 id="title">Movie Roulette</h1>
             </div>
+
     </header>
     <div id="home" class="grid-x">
         <aside id="sidebar" class="cell medium-3">
+
             <div class="grid-y" id="savedBar">
                 <!--this is where users saved movies will go-->
             </div>
+
         </aside>
         <div id="movieSecton" class="cell medium-9">
-            <article class="grid-y">
-                <section class="cell"><h2 id="movieTitle">Movie Title</h2></section>
-                <section id="movieTrailer" class="cell"></section>
-                <section class="cell"><h4 id="descrip" >Copy</h4></section>
+            <article class="grid-x">
+                <article class="cell">
+                    <article class="grid-x">
+
+                        <section class="cell medium-11">
+                            <h2 id="movieTitle">Movie Title</h2>
+                        </section>
+
+                        <section class="cell medium-11" id="movieTrailer" ></section>
+
+                        <section class="cell medium-11">
+                            <h4 id="descrip" >Copy</h4>
+                        </section>
+
+                        <section class="cell medium-11">
+                            <h3> My Rating: <span id="myRating"></span></h3>
+                        </section>
+
+                        <section class="cell medium-11">
+                            <h3>My Notes: <span id="myNotes"></span></h3>
+                        </section>
+
+                    </article>
+                </article>
             </article>
         </div>
+        
     </div>
-        <footer id="footer" class="grid-x align-center-middle"><h1>Footer</h1></footer>
+
+        <footer id="footer" class="grid-x align-center-middle">
+            <h1>Footer</h1>
+        </footer>
+
     </main>
 
     <!-- jquery for for foundation script -->
