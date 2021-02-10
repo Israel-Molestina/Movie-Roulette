@@ -140,7 +140,7 @@ function tmDirectorSearch (updatedtmUrl) {
                         var directorId = direct.results[0].id
                         console.log(directorId);
 
-                        var directID = '&with_people=' + directorId;
+                        var directID = '&with_crew=' + directorId;
 
                         updatedtmUrl = updatedtmUrl + directID;
                         tmActorSearch(updatedtmUrl);
@@ -180,7 +180,7 @@ function tmActorSearch(updatedtmUrl) {
                         var actorId = act.results[0].id
                         console.log(actorId);
 
-                        var act = '&with_people=' + actorId;
+                        var act = '&with_cast=' + actorId;
                         updatedtmUrl = updatedtmUrl + act;
                         tmMovieSearch(updatedtmUrl);
                     }); 
