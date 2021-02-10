@@ -5,9 +5,10 @@
  var movieTitle = document.querySelector('#movieTitle');
  var movieDescript = document.querySelector('#descrip');
  var movieTrailer = document.querySelector('#movieTrailer');
- var savedTrailer = document.createElement('iframe');
+ var posterSaved = document.createElement('img');
  var myRating = document.querySelector('#myRating');
  var myNotes = document.querySelector('#myNotes');
+ var savedTrailer = document.createElement('iframe');
 
 // will load the saved movies when user goes to their movies page
 $('document').ready(function() {
@@ -44,20 +45,21 @@ $(document).on('click', '.userMovies', function() {
 
     var movieInfo = JSON.parse(localStorage.getItem(name));
     console.log(movieInfo);
-    if(movieInfo.trailerUrl = ''){
+    if(movieInfo.trailerUrl === ''){
         console.log(movieInfo.trailerUrl);
         console.log(movieInfo);
-        var posterSaved = document.createElement('img');
-        
         posterSaved.setAttribute('src', movieInfo.posterUrl)
         movieTrailer.appendChild(posterSaved);
         console.log(posterSaved);
+        
     }else{
+        
         savedTrailer.setAttribute('src', movieInfo.trailerUrl)
+        movieTrailer.appendChild(savedTrailer);
     }
     movieTitle.textContent = name;
     movieDescript.textContent = movieInfo.description;
-    movieTrailer.appendChild(savedTrailer);
+   
     myRating.textContent = movieInfo.userRating;
     myNotes.textContent = movieInfo.notes;
     
