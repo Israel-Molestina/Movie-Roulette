@@ -25,9 +25,11 @@ var sumBox = document.querySelector('#descrip');
 var insertTrailer = document.querySelector('#movieTrailer');
 var trailerEl = document.createElement('iframe');
 var movieTitleSpan = document.createElement('h2');
-var summarySpan = document.createElement('p')
-
+var summarySpan = document.createElement('p');
+var notFound = document.getElementById('notFound');
+var showMovieEl = document.getElementById('showmovie');
 var introEl = document.getElementById('instructions');
+
 // event listener that will take user to their watched movies page
 btnPage.addEventListener('click', function() {
     location.assign('watched.html');
@@ -66,10 +68,12 @@ btnSave.addEventListener('click', function() {
 // hide instructions to get movie
 function hideIntro(){
     
-    introEl.style.display = 'none'
+    notFound.style.display = 'none';
     
-    var showMovieEl = document.getElementById('showmovie');
-    showMovieEl.style.display = 'block'
+    introEl.style.display = 'none';
+    
+    showMovieEl.style.display = 'block';
+
     
 };
 
@@ -126,7 +130,6 @@ function tmDirectorSearch (updatedtmUrl) {
             .then(function (response) {
 
                 if (response.ok) {
-
 
                     console.log('-----'+ response.url);
 
@@ -214,10 +217,10 @@ function tmMovieSearch(updatedtmUrl) {
 };
 
 function noMovie() {
-    var notFound = document.getElementById('notFound');
-
     introEl.style.display = 'none';
     notFound.style.display = 'block';
+    showMovieEl.style.display = 'none';
+
 }
 
 // Function to choose random movie 
@@ -228,16 +231,6 @@ function randomMovie(returnJson){
     var movieOption = returnJson.results[index]
 
     insertMovieInfo(movieOption);
-};
-
-
-
-// inserts the movie trailer
-function insertMovieTrailer(newVidHTTP) {
-    
-    trailerEl.setAttribute('src', newVidHTTP);
-    insertTrailer.appendChild(trailerEl);
-
 };
 
 /// First step of using MovieID to get  Youtube ID for trailer
@@ -267,7 +260,7 @@ function tmTrailerSearch(searchMovie, posterPath) {
                     console.log('-----Search FOR POSTER----')
                 }else {
                     console.log('-----Found Trailer----')
-                    // youtubeTrailer(data);
+                    youtubeTrailer(data);
                 }
             });
             }
@@ -345,7 +338,6 @@ function insertMovieTrailer(newVidHTTP) {
     insertTrailer.appendChild(trailerEl);
 
 };
-
 
 // ombd fetch request for extra info on movie
 // function omMovieSearch() {
