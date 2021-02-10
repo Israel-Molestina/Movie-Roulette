@@ -25,8 +25,9 @@ var sumBox = document.querySelector('#descrip');
 var insertTrailer = document.querySelector('#movieTrailer');
 var trailerEl = document.createElement('iframe');
 var movieTitleSpan = document.createElement('h2');
-var summarySpan = document.createElement('p');
+var summarySpan = document.createElement('p')
 
+var introEl = document.getElementById('instructions');
 // event listener that will take user to their watched movies page
 btnPage.addEventListener('click', function() {
     location.assign('watched.html');
@@ -34,8 +35,6 @@ btnPage.addEventListener('click', function() {
 
 // click event listener for when user submits criteria
 btnSub.addEventListener('click', function() {
-
-    hideIntro();
 
     userGenre();
 
@@ -66,7 +65,7 @@ btnSave.addEventListener('click', function() {
 
 // hide instructions to get movie
 function hideIntro(){
-    var introEl = document.getElementById('instructions');
+    
     introEl.style.display = 'none'
     
     var showMovieEl = document.getElementById('showmovie');
@@ -193,24 +192,33 @@ function tmActorSearch(updatedtmUrl) {
 
 // fetch function for the movie data base.
 function tmMovieSearch(updatedtmUrl) {
+    console.log(updatedtmUrl)
     
     fetch(updatedtmUrl)
         .then(function (response) {
+            response.json()
+            .then(function(returnJson) {
 
-            if (response.ok) {
-                response.json()
-                .then(function(returnJson) {
-                console.log(returnJson);
-                randomMovie(returnJson);
+                console.log(returnJson.results.length);
+                if (returnJson.results.length !== 0) {
+                    hideIntro();
+                    randomMovie(returnJson);
+                }
+                else {
+                    noMovie();
+                }
                 
-                });
-            
-            }
-            
-            // gonna put an else statment here if response is for some reason invalid
-        })
-        
+            })
+
+        }) 
 };
+
+function noMovie() {
+    var notFound = document.getElementById('notFound');
+
+    introEl.style.display = 'none';
+    notFound.style.display = 'block';
+}
 
 // Function to choose random movie 
 function randomMovie(returnJson){
@@ -236,7 +244,7 @@ function tmTrailerSearch(searchMovie) {
                 .then(function(data) {
                 console.log(data);
                 
-                youtubeTrailer(data);
+                // youtubeTrailer(data);
             });
             
             }
